@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import NavBar from "./components/Navbar";
+import Board from "./components/Board";
 
 function App() {
+  const [tickets, setTickets] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [groupingOption, setGroupingOption] = useState("status"); // Default grouping option
+
+  // Use the useEffect hook to fetch data when the component mounts
+  useEffect(() => {
+    // Define the API URL
+    const apiUrl = "https://api.quicksell.co/v1/internal/frontend-assignment";
+
+    // Fetch data from the API
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        // Set the fetched data to the state variables
+        setTickets(data.tickets);
+        setUsers(data.users);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []); // The empty dependency array ensures that this effect runs once when the component mounts
+
+  console.log(tickets);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar setGroupingOption={setGroupingOption} />
+      <Board tickets={tickets} groupingOption={groupingOption} />
     </div>
   );
 }
