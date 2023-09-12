@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <NavBar setGroupingOption={setGroupingOption} />
-      <Board tickets={tickets} groupingOption={groupingOption} />
+      <Board tickets={tickets} groupingOption={groupingOption} users={users} />
     </div>
   );
 }

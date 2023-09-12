@@ -1,0 +1,12 @@
+.group-title {
+  display: flex;
+  align-items: center;
+  background-color: #f4f5f8; /* Same color as the background */
+  padding: 10px;
+  /* border-bottom: 1px solid #ccc; Add a border at the bottom if needed */
+}
+.title {
+  flex-grow: 1;
+  margin: 0 10px; /* Add margin as needed */
+  /* font-weight: bold; Apply desired font styles */
+}
